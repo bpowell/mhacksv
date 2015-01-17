@@ -36,4 +36,5 @@ public class WhatToWearFragment extends Fragment {
 
         return v;
     }
+
 }

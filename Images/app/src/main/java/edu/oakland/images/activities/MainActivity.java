@@ -21,6 +21,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import edu.oakland.images.R;
+import edu.oakland.images.adapters.OutfitGridAdapter;
 import edu.oakland.images.fragments.CategoryFragment_;
 import edu.oakland.images.fragments.WardrobeFragment_;
 import edu.oakland.images.fragments.WhatToWearFragment_;
@@ -53,29 +54,23 @@ public class MainActivity extends ActionBarActivity {
         drawerList.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.drawer_list_item, fragmentTitles));
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
-        //drawerToggle = new ActionBarDrawerToggle(
-        //        this,
-        //        drawer,
-        //        toolbar,
-        //        R.string.app_name,
-        //        R.string.app_name);
 
         drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close) {
 
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-
             }
+
         };
 
         drawer.setDrawerListener(drawerToggle);
+        selectItem(0);
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -106,8 +101,6 @@ public class MainActivity extends ActionBarActivity {
                 .replace(R.id.container, fragment)
                 .commit();
 
-        drawerList.setItemChecked(position, true);
-        setTitle(fragmentTitles[position]);
         getSupportActionBar().setTitle(fragmentTitles[position]);
         drawer.closeDrawer(drawerList);
     }
