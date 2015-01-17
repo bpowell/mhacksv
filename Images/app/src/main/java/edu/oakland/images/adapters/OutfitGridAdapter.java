@@ -14,10 +14,10 @@ import edu.oakland.images.R;
 /**
  * Created by steven on 1/17/15.
  */
-public class OutfitAdapter extends BaseAdapter {
+public class OutfitGridAdapter extends BaseAdapter {
     private Context mContext;
 
-    public OutfitAdapter(Context c) {
+    public OutfitGridAdapter(Context c) {
         mContext = c;
     }
 
