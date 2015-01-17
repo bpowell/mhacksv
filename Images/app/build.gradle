@@ -1,25 +1,61 @@
+//             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//         }
+//     }
+// }
+//
+// dependencies {
+//     compile fileTree(dir: 'libs', include: ['*.jar'])
+// }
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        // replace with the current version of the android-apt plugin
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+def AAVersion = '3.2'
+
+dependencies {
+    apt "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
+    compile 'com.android.support:support-v4:21.0.3'
+}
+
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0].processResources.manifestFile
+
+        resourcePackageName 'edu.oakland.images'
+    }
+}
 
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "edu.oakland.images"
         minSdkVersion 21
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+    sourceSets {
+        main {
+            // manifest.srcFile 'src/main/AndroidManifest.xml'
+            // java.srcDirs = ['src/main/java', 'build/generated/source/apt/${variant.dirName}']
+            // resources.srcDirs = ['src/main/resources']
+            // res.srcDirs = ['src/main/res']
+            // assets.srcDirs = ['src/main/assets']
         }
     }
-}
-
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v4:21.0.3'
 }

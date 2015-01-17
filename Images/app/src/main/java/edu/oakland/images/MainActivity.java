@@ -18,7 +18,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.androidannotations.annotations.EActivity;
 
+
+@EActivity(R.layout.activity_main)
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
