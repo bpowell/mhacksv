@@ -191,4 +191,78 @@ public class OutfitDataSource {
 
         return outfit;
     }
+
+    public ArrayList<Item> getItemsByClothingType(ClothingType type) {
+        Cursor cursor = database.rawQuery(
+                "select " + OutfitSQLiteHelper.COL_ID +
+                        " from " + OutfitSQLiteHelper.TABLE_ITEMS +
+                        " where " + OutfitSQLiteHelper.ITEMS_CLOTHING_TYPE + " = " + type.ordinal()
+                , null
+        );
+
+        ArrayList<Integer> itemIds = new ArrayList<>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            itemIds.add(cursor.getInt(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return getItems(itemIds);
+    }
+
+    public ArrayList<Item> getItemsByArticleType(ArticleType type) {
+        Cursor cursor = database.rawQuery(
+                "select " + OutfitSQLiteHelper.COL_ID +
+                        " from " + OutfitSQLiteHelper.TABLE_ITEMS +
+                        " where " + OutfitSQLiteHelper.ITEMS_ARTICLE_TYPE + " = " + type.ordinal()
+                , null
+        );
+
+        ArrayList<Integer> itemIds = new ArrayList<>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            itemIds.add(cursor.getInt(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return getItems(itemIds);
+    }
+
+    //WARNING
+    //Right now requires an excat match!!!!
+    public ArrayList<Item> getItemsByColor(ColorInfo color) {
+        Cursor cursor = database.rawQuery(
+                "select " + OutfitSQLiteHelper.COL_ID +
+                        " from " + OutfitSQLiteHelper.TABLE_COLORED_ITEMS +
+                        " where " + OutfitSQLiteHelper.COLORED_ITEMS_COLOR + " = " + color.value
+                , null
+        );
+
+        ArrayList<Integer> itemIds = new ArrayList<>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            itemIds.add(cursor.getInt(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return getItems(itemIds);
+    }
+
+    public Item getItemByName(String name) {
+        Cursor cursor = database.rawQuery(
+                "select " + OutfitSQLiteHelper.COL_ID +
+                        " from " + OutfitSQLiteHelper.TABLE_ITEMS +
+                        " where " + OutfitSQLiteHelper.ITEMS_NAME + " = " + name
+                , null
+        );
+
+        cursor.moveToFirst();
+        Item item = getItem(cursor.getInt(0));
+        cursor.close();
+
+        return item;
+    }
 }
