@@ -3,6 +3,7 @@ package edu.oakland.images;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -13,8 +14,9 @@ import java.util.Map;
 public class ImageUtils {
     public static final double PERCENT_TO_CUT = 0.10;
     public static final int SHRINK_FACTOR = 2;
+    public static final int NUMBER_OF_COLORS = 5;
 
-    public static ColorInfo getTopColors(String placeholder) {
+    public static ArrayList<ColorInfo> getTopColors(String placeholder) {
         HashMap<Integer, Integer> usedColors = new HashMap<Integer, Integer>();
         BitmapFactory.Options opts = new BitmapFactory.Options();
         opts.inSampleSize = SHRINK_FACTOR;
@@ -41,16 +43,27 @@ public class ImageUtils {
         }
 
         Iterator it = usedColors.entrySet().iterator();
-        ColorInfo topColor = new ColorInfo(0,0);
+        ArrayList<ColorInfo> colors = new ArrayList<ColorInfo>();
+        for(int i=0; i<NUMBER_OF_COLORS; i++) {
+            colors.add(new ColorInfo(0,0));
+        }
+
 
         while (it.hasNext()) {
             Map.Entry<Integer, Integer> pairs = (Map.Entry) it.next();
             int size = pairs.getValue();
-            if (size > topColor.size) {
-                topColor = new ColorInfo(pairs.getKey(), size);
+
+            if (size > colors.get(0).size) {
+                colors.set(0, new ColorInfo(pairs.getKey(), size));
+            }
+
+            for(int i=1; i<colors.size(); i++) {
+                if (size > colors.get(i).size && size < colors.get(i-1).size) {
+                    colors.set(i, new ColorInfo(pairs.getKey(), size));
+                }
             }
         }
 
-        return topColor;
+        return colors;
     }
 }
