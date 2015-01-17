@@ -25,14 +25,14 @@ public class OutfitSQLiteHelper extends SQLiteOpenHelper{
     public static final String ITEMS_NAME = "name";
     public static final String ITEMS_ARTICLE_TYPE = "article_type";
     public static final String ITEMS_CLOTHING_TYPE = "clothing_type";
-    public static final String ITEMS_RESOURCE_ID = "resourceId";
+    public static final String ITEMS_RESOURCE_PATH = "resourcePath";
     public static final String CREATE_TABLE_ITEMS = "" +
             "CREATE TABLE " + TABLE_ITEMS +
             " ( " + COL_ID + " integer primary key autoincrement, " +
             ITEMS_NAME + " text not null, " +
             ITEMS_ARTICLE_TYPE + " integer not null, " +
             ITEMS_CLOTHING_TYPE + " integer not null, " +
-            ITEMS_RESOURCE_ID + " integer not null " +
+            ITEMS_RESOURCE_PATH + " text not null " +
             ")";
 
     public static final String TABLE_COLORED_ITEMS = "colored_items";

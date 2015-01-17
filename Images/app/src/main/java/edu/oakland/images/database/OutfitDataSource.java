@@ -54,7 +54,7 @@ public class OutfitDataSource {
         values.put(OutfitSQLiteHelper.ITEMS_ARTICLE_TYPE, item.articleType.ordinal());
         values.put(OutfitSQLiteHelper.ITEMS_CLOTHING_TYPE, item.clothingType.ordinal());
         values.put(OutfitSQLiteHelper.ITEMS_NAME, item.name);
-        values.put(OutfitSQLiteHelper.ITEMS_RESOURCE_ID, item.resourceId);
+        values.put(OutfitSQLiteHelper.ITEMS_RESOURCE_PATH, item.resourcePath);
         long id = database.insert(OutfitSQLiteHelper.TABLE_ITEMS, null, values);
 
         ArrayList<Long> colorIds = insertColors(item.colors);
@@ -117,7 +117,8 @@ public class OutfitDataSource {
                 "select " + OutfitSQLiteHelper.ITEMS_ARTICLE_TYPE + ", " +
                         OutfitSQLiteHelper.ITEMS_CLOTHING_TYPE + ", " +
                         OutfitSQLiteHelper.ITEMS_NAME + ", " +
-                        OutfitSQLiteHelper.COL_ID +
+                        OutfitSQLiteHelper.COL_ID + ", " +
+                        OutfitSQLiteHelper.ITEMS_RESOURCE_PATH +
                         " from " + OutfitSQLiteHelper.TABLE_ITEMS +
                         " where " + OutfitSQLiteHelper.COL_ID + " = " + id
                 , null
@@ -127,7 +128,7 @@ public class OutfitDataSource {
         Item item = new Item();
         item.articleType = (ArticleType.values()[cursor.getInt(0)]);
         item.clothingType = (ClothingType.values()[cursor.getInt(1)]);
-        item.resourceId = cursor.getInt(4);
+        item.resourcePath = cursor.getString(4);
         cursor.close();
 
         cursor = database.rawQuery(

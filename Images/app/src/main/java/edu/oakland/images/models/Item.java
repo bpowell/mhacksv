@@ -12,24 +12,24 @@ public class Item {
     public ClothingType clothingType;
     public ArticleType articleType;
     public ArrayList<ColorInfo> colors;
-    public int resourceId;
+    public String resourcePath;
 
-    public Item(String name, ClothingType clothingType, ArticleType articleType, ArrayList<ColorInfo> colors, int resourceId) {
+    public Item(String name, ClothingType clothingType, ArticleType articleType, ArrayList<ColorInfo> colors, String resourcePath) {
         this.name = name;
         this.clothingType = clothingType;
         this.articleType = articleType;
         this.colors = colors;
-        this.resourceId = resourceId;
+        this.resourcePath = resourcePath;
     }
 
-    public Item(String name, ClothingType clothingType, ArticleType articleType, ColorInfo color, int resourceId) {
+    public Item(String name, ClothingType clothingType, ArticleType articleType, ColorInfo color, String resourcePath) {
         ArrayList<ColorInfo> colors = new ArrayList<>();
         colors.add(color);
         this.name = name;
         this.clothingType = clothingType;
         this.articleType = articleType;
         this.colors = colors;
-        this.resourceId = resourceId;
+        this.resourcePath = resourcePath;
     }
 
     public Item() {
