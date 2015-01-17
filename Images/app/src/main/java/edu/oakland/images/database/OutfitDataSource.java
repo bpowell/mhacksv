@@ -54,6 +54,7 @@ public class OutfitDataSource {
         values.put(OutfitSQLiteHelper.ITEMS_ARTICLE_TYPE, item.articleType.ordinal());
         values.put(OutfitSQLiteHelper.ITEMS_CLOTHING_TYPE, item.clothingType.ordinal());
         values.put(OutfitSQLiteHelper.ITEMS_NAME, item.name);
+        values.put(OutfitSQLiteHelper.ITEMS_RESOURCE_ID, item.resourceId);
         long id = database.insert(OutfitSQLiteHelper.TABLE_ITEMS, null, values);
 
         ArrayList<Long> colorIds = insertColors(item.colors);
@@ -126,6 +127,7 @@ public class OutfitDataSource {
         Item item = new Item();
         item.articleType = (ArticleType.values()[cursor.getInt(0)]);
         item.clothingType = (ClothingType.values()[cursor.getInt(1)]);
+        item.resourceId = cursor.getInt(4);
         cursor.close();
 
         cursor = database.rawQuery(
