@@ -25,6 +25,17 @@ public class WhatToWearFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_what_to_wear, container, false);
 
+        setUpGridView(v);
+        setUpFab();
+
+        return v;
+    }
+
+    private void setUpFab() {
+
+    }
+
+    private void setUpGridView(View v) {
         GridView gridView = (GridView) v.findViewById(R.id.grid_view);
         gridView.setAdapter(new OutfitGridAdapter(getActivity()));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -33,8 +44,6 @@ public class WhatToWearFragment extends Fragment {
                 Log.d("SLKJA:SLKJ", "" + position);
             }
         });
-
-        return v;
     }
 
 }

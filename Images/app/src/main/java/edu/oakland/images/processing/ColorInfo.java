@@ -10,7 +10,6 @@ public class ColorInfo {
 
     public ColorInfo(int value, int size) {
         this.value = value;
-        this.color = ColorUtils.whatColor(value);
         this.size = size;
     }
 }

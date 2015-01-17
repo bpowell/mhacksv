@@ -21,7 +21,6 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import edu.oakland.images.R;
-import edu.oakland.images.adapters.OutfitGridAdapter;
 import edu.oakland.images.fragments.CategoryFragment_;
 import edu.oakland.images.fragments.WardrobeFragment_;
 import edu.oakland.images.fragments.WhatToWearFragment_;
@@ -54,21 +53,7 @@ public class MainActivity extends ActionBarActivity {
         drawerList.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.drawer_list_item, fragmentTitles));
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
-
-        drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close) {
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-            }
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-            }
-
-        };
-
+        drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close);
         drawer.setDrawerListener(drawerToggle);
         selectItem(0);
     }
