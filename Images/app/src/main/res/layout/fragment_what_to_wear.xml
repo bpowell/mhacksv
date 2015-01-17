@@ -33,6 +33,7 @@
         android:numColumns="3" />
 
     <ImageButton
+        android:id="@+id/add_picture_fab"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="56dp"
         android:layout_height="56dp"
