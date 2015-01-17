@@ -1,4 +1,4 @@
-package edu.oakland.images;
+package edu.oakland.images.models;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package edu.oakland.images;
+package edu.oakland.images.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

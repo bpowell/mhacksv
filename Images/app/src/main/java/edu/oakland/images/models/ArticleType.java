@@ -1,4 +1,4 @@
-package edu.oakland.images;
+package edu.oakland.images.models;
 
 /**
  * Created by brandon on 1/17/15.
