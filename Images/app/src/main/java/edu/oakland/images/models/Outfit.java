@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class Outfit {
     public ArrayList<Item> items;
+    public String name;
 
     public Outfit() {
         items = new ArrayList<>();
