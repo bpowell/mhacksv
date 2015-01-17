@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
 
 import edu.oakland.images.R;
 import edu.oakland.images.adapters.OutfitAdapter;

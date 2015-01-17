@@ -5,8 +5,9 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import edu.oakland.images.R;
 
@@ -32,18 +33,36 @@ public class OutfitAdapter extends BaseAdapter {
         return 0;
     }
 
-    // create a new ImageView for each item referenced by the Adapter
+    // generates a new outfit grid card
     public View getView(int position, View convertView, ViewGroup parent) {
+
         CardView cardView = new CardView(mContext);
-        cardView.setPadding(8, 8, 8, 8);
+        LinearLayout linearLayout = new LinearLayout(mContext);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
+        cardParams.setMargins(100, 100, 100, 100);
+        cardView.setRadius(0);
+        cardView.setLayoutParams(cardParams);
+
+        LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 200);
         ImageView imageView = new ImageView(mContext);
-        imageView.setLayoutParams(new GridView.LayoutParams(200, 100));
+        imageView.setLayoutParams(imageParams);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
         imageView.setImageResource(mThumbIds[position]);
 
-        cardView.addView(imageView);
+        TextView textView = new TextView(mContext);
+        textView.setText("" + position);
+        textView.setTextSize(14);
+        textView.setBackgroundColor(mContext.getResources().getColor(R.color.cardview_light_background));
+        textView.setPadding(16, 16, 16, 16);
+        LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        textView.setLayoutParams(textParams);
+
+        linearLayout.addView(imageView);
+        linearLayout.addView(textView);
+
+        cardView.addView(linearLayout);
 
         return cardView;
     }
