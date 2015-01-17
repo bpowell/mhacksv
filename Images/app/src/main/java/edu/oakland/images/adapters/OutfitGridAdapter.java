@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import edu.oakland.images.R;
@@ -14,10 +15,10 @@ import edu.oakland.images.R;
 /**
  * Created by steven on 1/17/15.
  */
-public class OutfitAdapter extends BaseAdapter {
+public class OutfitGridAdapter extends BaseAdapter {
     private Context mContext;
 
-    public OutfitAdapter(Context c) {
+    public OutfitGridAdapter(Context c) {
         mContext = c;
     }
 

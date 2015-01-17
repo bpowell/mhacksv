@@ -10,10 +10,9 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
 
 import edu.oakland.images.R;
-import edu.oakland.images.adapters.OutfitAdapter;
+import edu.oakland.images.adapters.OutfitGridAdapter;
 
 /**
  * Created by steven on 1/17/15.
@@ -25,9 +24,9 @@ public class WhatToWearFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_what_to_wear, container, false);
-        GridView gridView = (GridView) v.findViewById(R.id.grid_view);
 
-        gridView.setAdapter(new OutfitAdapter(getActivity()));
+        GridView gridView = (GridView) v.findViewById(R.id.grid_view);
+        gridView.setAdapter(new OutfitGridAdapter(getActivity()));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -37,4 +36,5 @@ public class WhatToWearFragment extends Fragment {
 
         return v;
     }
+
 }
