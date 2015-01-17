@@ -14,12 +14,10 @@ public class OutfitSQLiteHelper extends SQLiteOpenHelper{
     public static final String COL_ID = "id";
 
     public static final String TABLE_COLORS = "colors";
-    public static final String COLORS_COLOR = "color";
     public static final String COLORS_VALUE = "value";
     public static final String CREATE_TABLE_COLORS = "" +
             "CREATE TABLE " + TABLE_COLORS +
             " ( " + COL_ID + " integer primary key autoincrement, " +
-            COLORS_COLOR + " text not null, " +
             COLORS_VALUE + " integer not null " +
             ")";
 
@@ -63,7 +61,7 @@ public class OutfitSQLiteHelper extends SQLiteOpenHelper{
             " ( " + COL_ID + " integer primary key autoincrement, " +
             OUTFITS_COLORED_ITEMS_COLORED_ITEM + " integer, " +
             OUTFITS_COLORED_ITEMS_OUTFITS + " integer, " +
-            " FOREIGN KEY (" + OUTFITS_COLORED_ITEMS_COLORED_ITEM + ") REFERENCES " + TABLE_COLORED_ITEMS + " (" + COL_ID + "), " +
+            " FOREIGN KEY (" + OUTFITS_COLORED_ITEMS_COLORED_ITEM + ") REFERENCES " + TABLE_ITEMS + " (" + COL_ID + "), " +
             " FOREIGN KEY (" + OUTFITS_COLORED_ITEMS_OUTFITS + ") REFERENCES " + TABLE_OUTFITS + " (" + COL_ID + ") " +
             ")";
 
