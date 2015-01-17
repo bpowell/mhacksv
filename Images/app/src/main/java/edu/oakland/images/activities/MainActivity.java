@@ -1,14 +1,12 @@
 package edu.oakland.images.activities;
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
 
 import edu.oakland.images.R;
 import edu.oakland.images.fragments.WhatToWearFragment_;
@@ -17,11 +15,9 @@ import edu.oakland.images.fragments.WhatToWearFragment_;
 @EActivity(R.layout.activity_main)
 public class MainActivity extends FragmentActivity {
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setUpFragment();
     }
 

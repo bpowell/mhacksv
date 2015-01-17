@@ -6,8 +6,30 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/recently_added_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="20sp"
+        android:text="@string/recently_added_title"
+        android:paddingBottom="2dp" />
+
+    <TextView
+        android:id="@+id/recently_added_summary"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@string/recently_added_summary"
+        android:paddingBottom="16dp"
+        android:layout_below="@id/recently_added_title" />
+
+    <GridView
+        android:id="@+id/grid_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="LKJSALRKJ" />
+        android:layout_below="@id/recently_added_summary"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="8dp"
+        android:numColumns="3" />
 
 </RelativeLayout>

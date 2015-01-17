@@ -4,5 +4,7 @@
     <string name="app_name">Images2</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="recently_added_title">Recently Added</string>
+    <string name="recently_added_summary">New outifts from your wardrobe</string>
 
 </resources>
