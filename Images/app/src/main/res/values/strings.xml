@@ -8,5 +8,6 @@
     <string name="recently_added_summary">New outifts from your wardrobe</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="add_item">Add This Item?</string>
 
 </resources>
