@@ -128,6 +128,7 @@ public class OutfitDataSource {
         item.articleType = (ArticleType.values()[cursor.getInt(0)]);
         item.clothingType = (ClothingType.values()[cursor.getInt(1)]);
         item.resourcePath = cursor.getString(4);
+        item.name = cursor.getString(2);
         cursor.close();
 
         cursor = database.rawQuery(
