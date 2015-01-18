@@ -255,7 +255,7 @@ public class OutfitDataSource {
         Cursor cursor = database.rawQuery(
                 "select " + OutfitSQLiteHelper.COL_ID +
                         " from " + OutfitSQLiteHelper.TABLE_ITEMS +
-                        " where " + OutfitSQLiteHelper.ITEMS_NAME + " = " + name
+                        " where " + OutfitSQLiteHelper.ITEMS_NAME + " = \"" + name + "\""
                 , null
         );
 
