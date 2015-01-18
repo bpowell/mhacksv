@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import edu.oakland.images.R;
+import edu.oakland.images.activities.AddArticleActivity_;
 import edu.oakland.images.adapters.OutfitGridAdapter;
 
 /**
@@ -101,6 +102,11 @@ public class WhatToWearFragment extends Fragment {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         mediaScanIntent.setData(uri);
         getActivity().sendBroadcast(mediaScanIntent);
+
+        AddArticleActivity_
+                .intent(this)
+                .uri(uri)
+                .start();
     }
 
 }
