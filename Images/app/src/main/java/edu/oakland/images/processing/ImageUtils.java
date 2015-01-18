@@ -1,12 +1,19 @@
 package edu.oakland.images.processing;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import edu.oakland.images.database.OutfitDataSource;
+import edu.oakland.images.models.ArticleType;
+import edu.oakland.images.models.ClothingType;
+import edu.oakland.images.models.Item;
 
 /**
  * Created by brandon on 1/17/15.
@@ -65,5 +72,17 @@ public class ImageUtils {
         }
 
         return colors;
+    }
+
+    public static void saveImage(String path, String name, ClothingType clothingType, ArticleType articleType, ArrayList<ColorInfo> colors, Context context) {
+        Item item = new Item(name, clothingType, articleType, colors, path);
+        OutfitDataSource dataSource = new OutfitDataSource(context);
+        try {
+            dataSource.open();
+            dataSource.insertItem(item);
+            dataSource.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
