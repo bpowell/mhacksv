@@ -4,10 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.util.Log;
 
-import org.androidannotations.annotations.Background;
-import org.androidannotations.annotations.EBean;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
@@ -99,6 +96,25 @@ public class ImageUtils {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static ColorInfo similarColor(String color) {
+        HttpClient client = new DefaultHttpClient();
+        HttpGet httpGet = new HttpGet("http://api.wolframalpha.com/v2/query?appid=PG9HJR-24H87X8K9Q&output=xml&input=%23" + color);
+
+        String response = "";
+        try {
+            response = getResponse(client, httpGet);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        int start = response.indexOf("red  |  green  |  blue");
+        start = response.indexOf("#", start);
+        String data = response.substring(start, start+7);
+
+        ColorInfo colorInfo = new ColorInfo(Color.parseColor(data), 0);
+        return colorInfo;
     }
 
     public static ArrayList<ColorInfo> triad(String color) {
