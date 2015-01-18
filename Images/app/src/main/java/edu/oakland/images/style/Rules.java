@@ -3,6 +3,7 @@ package edu.oakland.images.style;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import edu.oakland.images.models.ArticleType;
 import edu.oakland.images.models.Item;
 import edu.oakland.images.models.Outfit;
 import edu.oakland.images.processing.ColorInfo;
@@ -28,16 +29,19 @@ public class Rules {
         }
 
         //belt+shoe check
-        boolean shoebelt = false;
-        for(ColorInfo c1 : colorsItem1) {
-            for(ColorInfo c2 : colorsItem2) {
-                if(c1.value==c2.value) {
-                    shoebelt = true;
+        if( (item1.articleType==ArticleType.BELTS || item2.articleType==ArticleType.BELTS) &&
+                (item1.articleType==ArticleType.SHOES || item2.articleType==ArticleType.SHOES) ) {
+            boolean shoebelt = false;
+            for (ColorInfo c1 : colorsItem1) {
+                for (ColorInfo c2 : colorsItem2) {
+                    if (c1.value == c2.value) {
+                        shoebelt = true;
+                    }
                 }
             }
-        }
-        if(!shoebelt) {
-            return false;
+            if (!shoebelt) {
+                return false;
+            }
         }
 
         return true;
