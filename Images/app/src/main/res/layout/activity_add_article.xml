@@ -38,49 +38,105 @@
 
         </android.support.v7.widget.CardView>
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <android.support.v7.widget.CardView
+            android:id="@+id/info_card"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="3"
-            android:weightSum="2">
+            android:layout_weight="3">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/info_card"
+            <ScrollView
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1" />
+                android:layout_height="fill_parent">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/color_card"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1" />
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
 
-            <!--
-            <ImageButton
-                android:id="@+id/confirm_picture_fab"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:fontFamily="sans-serif-light"
-                android:backgroundTint="@android:color/white"
-                android:elevation="4dp"
-                android:background="@drawable/green_fab_ripple"
-                android:src="@drawable/ic_check_white_24dp"
-                android:padding="@dimen/activity_vertical_margin"
-                android:labelFor="@id/image_card"
-                android:layout_gravity="bottom"
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true" />
-                -->
+                    <LinearLayout
+                        android:id="@+id/info_layout"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/activity_horizontal_margin"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin">
 
-        </LinearLayout>
+                        <EditText
+                            android:id="@+id/clothing_name"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:hint="@string/clothing_name_label"
+                            android:textSize="20sp" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="16dp"
+                            android:paddingBottom="16dp"
+                            android:text="@string/clothing_type_label" />
+
+                        <Spinner
+                            android:id="@+id/clothing_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="16dp"
+                            android:text="@string/clothing_article_type_label" />
+
+                        <Spinner
+                            android:id="@+id/article_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@id/info_layout"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="No"
+                            android:id="@+id/button"
+                            android:textColor="@android:color/holo_red_dark"
+                            android:layout_weight="1"
+                            style="?android:attr/borderlessButtonStyle" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Yes"
+                            android:id="@+id/button2"
+                            android:hint="Yes"
+                            android:textColor="@android:color/holo_green_dark"
+                            android:layout_weight="1"
+                            style="?android:attr/borderlessButtonStyle" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </ScrollView>
+
+        </android.support.v7.widget.CardView>
     </LinearLayout>
 
 </RelativeLayout>

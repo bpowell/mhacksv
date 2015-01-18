@@ -9,5 +9,8 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="add_item">Add This Item?</string>
+    <string name="clothing_name_label">Name</string>
+    <string name="clothing_type_label">Clothing Type</string>
+    <string name="clothing_article_type_label">What is it?</string>
 
 </resources>

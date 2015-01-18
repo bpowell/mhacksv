@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string-array name="fragment_titles">
         <item>What To Wear</item>
         <item>Categories</item>
         <item>Wardrobe</item>
     </string-array>
+
+    <string-array name="clothing_types">
+        <item>Shirts</item>
+        <item>Coats</item>
+        <item>Sweaters</item>
+        <item>Pants</item>
+        <item>Shorts</item>
+        <item>Skirts</item>
+        <item>Shoes</item>
+        <item>Socks</item>
+        <item>Dress</item>
+        <item>Belts</item>
+        <item>Watches</item>
+        <item>Hats</item>
+    </string-array>
+
+    <string-array name="article_types">
+        <item>Top</item>
+        <item>Bottom</item>
+        <item>Fullbody</item>
+        <item>Accessories</item>
+    </string-array>
+
 </resources>

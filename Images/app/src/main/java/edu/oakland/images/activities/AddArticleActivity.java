@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.support.v7.widget.Toolbar;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -28,6 +30,12 @@ public class AddArticleActivity extends ActionBarActivity {
     @ViewById(R.id.toolbar)
     Toolbar toolbar;
 
+    @ViewById(R.id.article_type)
+    Spinner clothingArticleSpinner;
+
+    @ViewById(R.id.clothing_type)
+    Spinner clothingTypeSpinner;
+
     @Extra
     Uri uri;
 
@@ -37,6 +45,21 @@ public class AddArticleActivity extends ActionBarActivity {
         String path = uri.toString().replaceFirst("file:", "");
         ArrayList<ColorInfo> colors = ImageUtils.getTopColors(path);
         ImageUtils.saveImage(path, "test", ClothingType.ACCESSORIES, ArticleType.BELTS, colors, getApplicationContext());
+    }
+
+    @AfterViews
+    void init() {
+        setUpSpinners();
+    }
+
+    private void setUpSpinners() {
+        ArrayAdapter<CharSequence> nameAdapter = ArrayAdapter.createFromResource(this,
+                R.array.article_types, android.R.layout.simple_spinner_dropdown_item);
+        clothingArticleSpinner.setAdapter(nameAdapter);
+
+        ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(this,
+                R.array.clothing_types, android.R.layout.simple_spinner_dropdown_item);
+        clothingTypeSpinner.setAdapter(typeAdapter);
     }
 }
 
