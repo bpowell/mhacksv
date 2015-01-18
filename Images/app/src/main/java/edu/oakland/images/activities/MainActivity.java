@@ -2,6 +2,7 @@ package edu.oakland.images.activities;
 
 import android.app.Fragment;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -20,7 +21,10 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.ArrayList;
+
 import edu.oakland.images.R;
+import edu.oakland.images.adapters.NavDrawerListAdapter;
 import edu.oakland.images.fragments.CategoryFragment_;
 import edu.oakland.images.fragments.WardrobeFragment_;
 import edu.oakland.images.fragments.WhatToWearFragment_;
@@ -50,8 +54,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void setUpDrawer() {
-        drawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, fragmentTitles));
+        drawerList.setAdapter(
+                new NavDrawerListAdapter(this, fragmentTitles, getResources().getIntArray(R.array.nav_drawer_icons)));
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
         drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close);
         drawer.setDrawerListener(drawerToggle);

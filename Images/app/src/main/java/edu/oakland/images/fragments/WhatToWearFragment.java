@@ -33,6 +33,7 @@ import edu.oakland.images.adapters.OutfitGridAdapter;
 public class WhatToWearFragment extends Fragment {
 
     static final int REQUEST_IMAGE_CAPTURE = 100;
+    static final int REQUEST_IMAGE_GALLERY = 101;
 
     private Uri uri;
 
@@ -44,7 +45,7 @@ public class WhatToWearFragment extends Fragment {
         return v;
     }
 
-    @Click(R.id.add_picture_fab)
+    @Click(R.id.camera_action)
     protected void addPicture() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -52,6 +53,14 @@ public class WhatToWearFragment extends Fragment {
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
+    }
+
+    @Click(R.id.gallery_action)
+    protected void addPictureFromGallery() {
+        Intent getFromGalleryIntent = new Intent();
+        getFromGalleryIntent.setType("image/*");
+        getFromGalleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(getFromGalleryIntent, "Select Picture"), 101);
     }
 
     private Uri getUriFromOutputFile() {
@@ -84,14 +93,23 @@ public class WhatToWearFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE) {
             if (resultCode == Activity.RESULT_OK) {
-                savePicture();
+                savePictureFromCamera();
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 // TODO: handle user cancelling?
+            }
+        } else if (requestCode == REQUEST_IMAGE_GALLERY) {
+            if (resultCode == Activity.RESULT_CANCELED) {
+                // TODO: handle user cancelling?
+            } else {
+                AddArticleActivity_
+                        .intent(this)
+                        .uri(data.getData())
+                        .start();
             }
         }
     }
 
-    private void savePicture() {
+    private void savePictureFromCamera() {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         mediaScanIntent.setData(uri);
         getActivity().sendBroadcast(mediaScanIntent);
