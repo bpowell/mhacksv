@@ -266,4 +266,22 @@ public class OutfitDataSource {
 
         return item;
     }
+
+    public ArrayList<Item> getLastXItems(int x) {
+        Cursor cursor = database.rawQuery(
+                "select count(*) from " + OutfitSQLiteHelper.TABLE_ITEMS
+                ,null
+        );
+
+        cursor.moveToFirst();
+        int total = cursor.getInt(0);
+        ArrayList<Integer> ids = new ArrayList<>();
+        int i = total>x ? total:x;
+        for(; i>0; i--) {
+            ids.add(i);
+        }
+        cursor.close();
+
+        return getItems(ids);
+    }
 }
