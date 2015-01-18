@@ -3,7 +3,21 @@ package edu.oakland.images.processing;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.util.Log;
 
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.EBean;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +32,7 @@ import edu.oakland.images.models.Item;
 /**
  * Created by brandon on 1/17/15.
  */
+
 public class ImageUtils {
     public static final double PERCENT_TO_CUT = 0.10;
     public static final int SHRINK_FACTOR = 2;
@@ -84,5 +99,71 @@ public class ImageUtils {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static ArrayList<ColorInfo> triad(String color) {
+        HttpClient client = new DefaultHttpClient();
+        HttpGet httpGet = new HttpGet("http://api.wolframalpha.com/v2/query?appid=PG9HJR-24H87X8K9Q&output=xml&input=triad%20%23" + color);
+
+        String response = "";
+        try {
+            response = getResponse(client, httpGet);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        int end = response.lastIndexOf("</plaintext>");
+        int start = response.lastIndexOf("<plaintext>");
+        String data = response.substring(response.indexOf("HSV", start), end);
+
+        float[] hsv1 = new float[3];
+        float[] hsv2 = new float[3];
+        start = data.indexOf("hue") + 4;
+        end = data.indexOf(" ", data.indexOf(" ", start)+1);
+        hsv1[0] = Float.parseFloat(data.substring(start, end)) * 360;
+
+        start = data.indexOf("hue", end) + 4;
+        end = data.indexOf(" ", data.indexOf(" ", start)+1);
+        hsv2[0] = Float.parseFloat(data.substring(start, end)) * 360;
+
+        start = data.indexOf("saturation") + 11;
+        end = data.indexOf(" ", data.indexOf(" ", start)+1);
+        hsv1[1] = Float.parseFloat(data.substring(start, end));
+
+        start = data.indexOf("saturation", end) + 11;
+        end = data.indexOf(" ", data.indexOf(" ", start)+1);
+        hsv2[1] = Float.parseFloat(data.substring(start, end));
+
+        start = data.indexOf("value") + 6;
+        end = data.indexOf(" ", data.indexOf(" ", start)+1);
+        hsv1[2] = Float.parseFloat(data.substring(start, end));
+
+        start = data.indexOf("value", end) + 6;
+        hsv2[2] = Float.parseFloat(data.substring(start));
+
+        ArrayList<ColorInfo> colors = new ArrayList<>();
+        colors.add(new ColorInfo(Color.HSVToColor(hsv1), 0));
+        colors.add(new ColorInfo(Color.HSVToColor(hsv2), 0));
+        return colors;
+    }
+
+    private static String getResponse(HttpClient client, HttpGet httpGet) throws Exception {
+        StringBuilder builder = new StringBuilder();
+        HttpResponse response = client.execute(httpGet);
+        StatusLine statusLine = response.getStatusLine();
+        int statusCode = statusLine.getStatusCode();
+        if (statusCode == 200) {
+            HttpEntity entity = response.getEntity();
+            InputStream content = entity.getContent();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                builder.append(line);
+            }
+        } else {
+            throw new Exception("Not a 200 status code");
+        }
+
+        return builder.toString();
     }
 }
