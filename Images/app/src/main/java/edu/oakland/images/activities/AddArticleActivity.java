@@ -11,7 +11,13 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.ArrayList;
+
 import edu.oakland.images.R;
+import edu.oakland.images.models.ArticleType;
+import edu.oakland.images.models.ClothingType;
+import edu.oakland.images.processing.ColorInfo;
+import edu.oakland.images.processing.ImageUtils;
 
 /**
  * Created by steven on 1/17/15.
@@ -28,11 +34,9 @@ public class AddArticleActivity extends ActionBarActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String path = uri.toString().replaceFirst("file:", "");
+        ArrayList<ColorInfo> colors = ImageUtils.getTopColors(path);
+        ImageUtils.saveImage(path, "test", ClothingType.ACCESSORIES, ArticleType.BELTS, colors, getApplicationContext());
     }
-
-    @AfterViews
-    void init() {
-        Log.d(":ASJDLASKJD", uri.toString());
-    }
-
 }
+
