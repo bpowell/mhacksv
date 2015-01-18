@@ -112,19 +112,19 @@
                         android:weightSum="2">
 
                         <Button
+                            android:id="@+id/no_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="No"
-                            android:id="@+id/button"
                             android:textColor="@android:color/holo_red_dark"
                             android:layout_weight="1"
                             style="?android:attr/borderlessButtonStyle" />
 
                         <Button
+                            android:id="@+id/yes_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Yes"
-                            android:id="@+id/button2"
                             android:hint="Yes"
                             android:textColor="@android:color/holo_green_dark"
                             android:layout_weight="1"
