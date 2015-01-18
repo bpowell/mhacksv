@@ -44,6 +44,17 @@ public class Rules {
             }
         }
 
-        return true;
+        for(ColorInfo c : colorsItem1) {
+            ArrayList<ColorInfo> triad = ImageUtils.triad(String.format("%06X", c.value));
+            for(ColorInfo t : triad) {
+                for(ColorInfo c2 : colorsItem2) {
+                    if (c.value==c2.value) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }
