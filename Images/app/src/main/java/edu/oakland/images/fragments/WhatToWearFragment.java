@@ -19,8 +19,6 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -57,23 +55,18 @@ public class WhatToWearFragment extends Fragment {
     }
 
     private Uri getUriFromOutputFile() {
-
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), getActivity().getResources().getString(R.string.app_name));
-
         // Create the storage directory if it does not exist
         if (! mediaStorageDir.exists()){
             if (! mediaStorageDir.mkdirs()){
                 Toast.makeText(getActivity(), "Could not create directory...", Toast.LENGTH_SHORT).show();
-
                 return null;
             }
         }
-
         // Create a media file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_"+ timeStamp + ".jpg");
-
         return Uri.fromFile(mediaFile);
     }
 
@@ -102,7 +95,6 @@ public class WhatToWearFragment extends Fragment {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         mediaScanIntent.setData(uri);
         getActivity().sendBroadcast(mediaScanIntent);
-
         AddArticleActivity_
                 .intent(this)
                 .uri(uri)

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import org.androidannotations.annotations.EBean;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
