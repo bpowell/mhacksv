@@ -4,7 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
+
+import org.androidannotations.annotations.EBean;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -129,6 +130,7 @@ public class OutfitDataSource {
         item.articleType = (ArticleType.values()[cursor.getInt(0)]);
         item.clothingType = (ClothingType.values()[cursor.getInt(1)]);
         item.resourcePath = cursor.getString(4);
+        item.name = cursor.getString(2);
         cursor.close();
 
         cursor = database.rawQuery(
@@ -256,7 +258,7 @@ public class OutfitDataSource {
         Cursor cursor = database.rawQuery(
                 "select " + OutfitSQLiteHelper.COL_ID +
                         " from " + OutfitSQLiteHelper.TABLE_ITEMS +
-                        " where " + OutfitSQLiteHelper.ITEMS_NAME + " = " + name
+                        " where " + OutfitSQLiteHelper.ITEMS_NAME + " = \"" + name + "\""
                 , null
         );
 
@@ -265,5 +267,23 @@ public class OutfitDataSource {
         cursor.close();
 
         return item;
+    }
+
+    public ArrayList<Item> getLastXItems(int x) {
+        Cursor cursor = database.rawQuery(
+                "select count(*) from " + OutfitSQLiteHelper.TABLE_ITEMS
+                ,null
+        );
+
+        cursor.moveToFirst();
+        int total = cursor.getInt(0);
+        ArrayList<Integer> ids = new ArrayList<>();
+        int i = total>x ? total:x;
+        for(; i>0; i--) {
+            ids.add(i);
+        }
+        cursor.close();
+
+        return getItems(ids);
     }
 }

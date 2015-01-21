@@ -3,6 +3,12 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light">
         <item name="windowActionBar">false</item>
+        <item name="android:colorPrimary">@android:color/holo_purple</item>
+        <item name="android:colorPrimaryDark">#9C27B0</item>
+
+        <item name="android:colorAccent">#FFC107</item>
+
+        <item name="android:navigationBarColor">@android:color/holo_purple</item>
     </style>
 
 </resources>

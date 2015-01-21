@@ -1,8 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string-array name="fragment_titles">
         <item>What To Wear</item>
         <item>Categories</item>
         <item>Wardrobe</item>
     </string-array>
+
+    <string-array name="article_types">
+        <item>Shirts</item>
+        <item>Coats</item>
+        <item>Sweaters</item>
+        <item>Pants</item>
+        <item>Shorts</item>
+        <item>Skirts</item>
+        <item>Shoes</item>
+        <item>Socks</item>
+        <item>Dress</item>
+        <item>Belts</item>
+        <item>Watches</item>
+        <item>Hats</item>
+    </string-array>
+
+    <string-array name="clothing_types">
+        <item>Top</item>
+        <item>Bottom</item>
+        <item>Fullbody</item>
+        <item>Accessories</item>
+    </string-array>
+    
+    <string-array name="nav_drawer_icons">
+        <item>@drawable/ic_tshirt_crew_grey600_24dp</item>
+        <item>@drawable/ic_hanger_grey600_24dp</item>
+        <item>@drawable/ic_shopping_grey600_24dp</item>
+    </string-array>
+
 </resources>
